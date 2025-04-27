@@ -4,13 +4,21 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
 	http.HandleFunc("/wake", wakeHandler)
 
-	log.Println("Starting server on :8080")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	// Read PORT environment variable, fallback to 8080
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	address := ":" + port
+	log.Printf("Starting server on %s\n", address)
+	if err := http.ListenAndServe(address, nil); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
 }
