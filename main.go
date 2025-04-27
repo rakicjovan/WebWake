@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -18,7 +20,17 @@ func main() {
 
 	address := ":" + port
 	log.Printf("Starting server on %s\n", address)
-	if err := http.ListenAndServe(address, nil); err != nil {
+
+	// Setup CORS configuration
+	corsHandler := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+		AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders: []string{"Content-Type"},
+	})
+
+	handler := corsHandler.Handler(http.DefaultServeMux)
+
+	if err := http.ListenAndServe(address, handler); err != nil {
 		log.Fatalf("Failed to start server: %v", err)
 	}
 }
