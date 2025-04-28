@@ -1,4 +1,4 @@
-package main
+package services
 
 import (
 	"encoding/hex"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func sendWOL(macAddr string) error {
+func SendWOL(macAddr string) error {
 	macAddr = strings.Replace(macAddr, ":", "", -1)
 	macAddr = strings.Replace(macAddr, "-", "", -1)
 

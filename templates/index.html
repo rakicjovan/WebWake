@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebWake</title>
+</head>
+<body>
+    <h1>Wake-on-LAN</h1>
+    <form id="wolForm">
+        <label for="mac">MAC Address:</label>
+        <input type="text" id="mac" name="mac" required>
+        <button type="submit">Wake!</button>
+    </form>
+
+    <p id="response"></p>
+
+    <script>
+        document.getElementById('wolForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const mac = document.getElementById('mac').value;
+            const res = await fetch('/wake', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ mac: mac })
+            });
+            const data = await res.json();
+            document.getElementById('response').innerText = JSON.stringify(data);
+        });
+    </script>
+</body>
+</html>
