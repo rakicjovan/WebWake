@@ -8,7 +8,7 @@
 
 ---
 
-## 🚀 Features
+## Features
 
 - Lightweight Go application
 - Accepts simple HTTP `POST` requests
@@ -17,7 +17,7 @@
 
 ---
 
-## 📦 Usage
+## Usage
 
 Send an HTTP `POST` request with a JSON body specifying the target device's MAC address.
 
@@ -31,7 +31,7 @@ curl -X POST "http://localhost:8080/wake" \
 
 ---
 
-## 🛠 Building
+## Building
 
 If you want to build and run the application manually:
 
@@ -42,7 +42,7 @@ go build -o webwake main.go
 
 ---
 
-## 🐳 Docker
+## Docker
 
 A `Dockerfile` is provided for containerized deployments.
 
@@ -63,7 +63,7 @@ docker run --network host webwake
 
 ---
 
-## ⚙️ Configuration
+## ⚙Configuration
 
 | Environment Variable | Description            | Default |
 |:---------------------|:------------------------|:--------|
@@ -74,11 +74,5 @@ Example running on a custom port:
 ```bash
 PORT=9090 ./webwake
 ```
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.  
 
 ---
